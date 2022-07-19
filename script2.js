@@ -11,23 +11,52 @@ const BLUE_WATER = '#69cae1';
 const WHITE = '#fff';
 
 let stage;
-
+stage = new createjs.Stage("canvas");
 //конструктор дерева
 const Tree = function(startX, startY) {
     this.startX = startX;
     this.startY = startY;
-    this.object = new createjs.Shape();
+    let object = this.object = new createjs.Shape();
 
-    this.object.graphics
+    object.graphics
         .beginFill(TREE_DARK_GREEN)
         .bezierCurveTo(this.startX - 25, this.startY + 33, this.startX - 25, this.startY + 59, this.startX, this.startY + 59)
+        .endFill()
         .beginFill(TREE_LIGHT_GREEN)
         .bezierCurveTo(this.startX + 25, this.startY + 33, this.startX + 25, this.startY + 59, this.startX, this.startY + 59)
+        .endFill()
         .beginFill(TREE_TRUNK)
         .moveTo(this.startX - 3, this.startY + 59)
         .lineTo(this.startX - 3, this.startY + 75)
         .lineTo(this.startX + 3, this.startY + 75)
-        .lineTo(this.startX + 3, this.startY + 59);
+        .lineTo(this.startX + 3, this.startY + 59)
+        .endFill();
+
+    function tick() {
+        object.x += 5;
+        stage.update();
+
+        if (object.x > stage.canvas.width) { 
+            object.x = 0; 
+            console.log(object.graphics.c)
+            object.graphics
+                .beginFill('red')
+                .bezierCurveTo(this.startX - 25, this.startY + 33, this.startX - 25, this.startY + 59, this.startX, this.startY + 59)
+                .endFill()
+                .beginFill('red')
+                .bezierCurveTo(this.startX + 25, this.startY + 33, this.startX + 25, this.startY + 59, this.startX, this.startY + 59)
+                .endFill()
+                .beginFill(TREE_TRUNK)
+                .moveTo(this.startX - 3, this.startY + 59)
+                .lineTo(this.startX - 3, this.startY + 75)
+                .lineTo(this.startX + 3, this.startY + 75)
+                .lineTo(this.startX + 3, this.startY + 59)
+                .endFill();
+        }
+    }    
+    createjs.Ticker.interval = 25;
+    createjs.Ticker.framerate = 60;
+    createjs.Ticker.on("tick", tick);
 }
 
 
@@ -35,24 +64,23 @@ let x = 0;
 let dx = 5;
 
 const firstTree = new Tree(65, 32);
-console.log(firstTree);
 
 function init() {
-    stage = new createjs.Stage("canvas");
-
-    var graphics = new createjs.Graphics().beginFill("#ff0000").drawRect(0, 0, 100, 100);
-    var shape = new createjs.Shape(graphics);
-
-    stage.addChild(shape);
-
+    stage.addChild(firstTree.object);
+    //Update stage will render next frame
     stage.update();
     
-    createjs.Ticker.on("tick", tick);
+    // createjs.Ticker.on("tick", tick);
 }
 
-function tick(event) {
-    
-    stage.update(event); // important!!
-}
+// function tick(event) {
+//     circle.x += 5;
+//     //Will cause the circle to wrap back
+//     if (circle.x > stage.canvas.width) { 
+//         circle.x = 0; 
+//         circle.graphics.beginFill('black').drawCircle(0, 0, 40)
+//     }
+//     stage.update();
+// }
 
 
