@@ -9,7 +9,10 @@ const LAND = '#d7cdb1';
 const BLUE = '#1074b8';
 const BLUE_WATER = '#69cae1';
 const WHITE = '#fff';
-
+const ROCK = '#827b74';
+const ROOf = '#00a0dd';
+const PIPE_GREEN = '#abddc5';
+const GREEN = '#287d8b';
 let stage;
 stage = new createjs.Stage("canvas");
 //конструктор дерева

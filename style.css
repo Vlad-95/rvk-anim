@@ -11,3 +11,17 @@ html {
 
 #canvas {
 }
+
+.anim {
+    position: relative;
+}
+
+.arrow {
+    position: absolute;
+    top: -9px;
+    left: -5px;
+}
+
+.arrow svg {
+    /* transform: rotate(180deg); */
+}
