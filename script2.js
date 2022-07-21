@@ -13,6 +13,8 @@ const ROCK = '#827b74';
 const ROOf = '#00a0dd';
 const PIPE_GREEN = '#abddc5';
 const GREEN = '#287d8b';
+const PIPE_PURPLE = '#cec5ee';
+const PURPLE = '#6449ae'
 let stage;
 stage = new createjs.Stage("canvas");
 //конструктор дерева

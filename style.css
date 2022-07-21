@@ -18,8 +18,9 @@ html {
 
 .arrow {
     position: absolute;
-    top: -9px;
-    left: -5px;
+    top: -10px;
+    left: -6px;
+    opacity: 0;
 }
 
 .arrow svg {
